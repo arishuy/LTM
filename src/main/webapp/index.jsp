@@ -1,6 +1,8 @@
+<%@page import="model.Bean.Account"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%Account account = (Account)request.getSession().getAttribute("account"); %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -22,7 +24,11 @@
       <h1 class="logo"><a href="#">ITPhone</a></h1>
       <ul class="main-nav">
         <li><a href="#">Trang chủ</a></li>
+        <%if (account!=null) {%>
+        <li><a href="login.jsp"><%=account.getName() %></a></li>
+        <%} else {%>
         <li><a href="login.jsp">Đăng nhập</a></li>
+        <%} %>
         <li><a href="#">Giỏ hàng</a></li>
         <li><a href="#">Liên hệ</a></li>
       </ul>

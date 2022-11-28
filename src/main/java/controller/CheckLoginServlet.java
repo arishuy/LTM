@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,8 +23,8 @@ public class CheckLoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String id = request.getParameter("username");
 		String pass = request.getParameter("password");
-		Account a = AccountBO.getAccount(id,pass);
-		if (a!=null) {
+		Account a = AccountBO.getAccount(id, pass);
+		if (a != null) {
 			request.getSession().setAttribute("account", a);
 			response.sendRedirect("index.jsp");
 		} else {
