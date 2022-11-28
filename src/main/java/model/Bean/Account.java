@@ -1,10 +1,10 @@
 package model.Bean;
 
 public class Account {
-	public String id, username, password, role, name, email, phone;
+	private int id;
+	private String username, password, role, name, email, phone;
 
-	public Account(String id, String username, String password, String role, String name, String email, String phone) {
-		super();
+	public Account(int id, String username, String password, String role, String name, String email, String phone) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
@@ -14,11 +14,11 @@ public class Account {
 		this.phone = phone;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
