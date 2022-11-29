@@ -37,7 +37,7 @@
         <%} %>
         <li><a href="#">Giỏ hàng</a></li>
         <%if (account!=null) {%>
-        <li><a href="info.jsp">Đăng xuất</a></li>
+        <li><a href="LogoutServlet">Đăng xuất</a></li>
         <%} else {%>
         <li><a href="#">Liên hệ</a></li>
         <%} %>
