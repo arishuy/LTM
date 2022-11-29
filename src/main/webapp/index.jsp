@@ -29,14 +29,18 @@
     <header class="header">
       <h1 class="logo"><a href="#">ITPhone</a></h1>
       <ul class="main-nav">
-        <li><a href="#">Trang chủ</a></li>
+        <li><a href="ProductServlet">Trang chủ</a></li>
         <%if (account!=null) {%>
-        <li><a href="login.jsp"><%=account.getName() %></a></li>
+        <li><a href="info.jsp"><%=account.getName() %></a></li>
         <%} else {%>
         <li><a href="login.jsp">Đăng nhập</a></li>
         <%} %>
         <li><a href="#">Giỏ hàng</a></li>
+        <%if (account!=null) {%>
+        <li><a href="info.jsp">Đăng xuất</a></li>
+        <%} else {%>
         <li><a href="#">Liên hệ</a></li>
+        <%} %>
       </ul>
     </header>
     <div class="body">
@@ -58,7 +62,7 @@
                     <%} %>
                 </ul>
                 </li>
-                <li><a href="#">Content 1</a></li>
+              	<li><a href="#">Content 1</a></li>
                 <li><a href="#">content 2</a></li>
             </ul>
         </div>
