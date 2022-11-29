@@ -17,14 +17,15 @@ public class ProductDAO {
 			ResultSet rs = stmt.executeQuery(sql);
 
 			if (rs.next()) {
-				return new Product(rs.getInt("id"),rs.getInt("id_ncc"), rs.getString("name"), rs.getDouble("price"), rs.getString("type"),
-						 rs.getInt("amount"));
+				return new Product(rs.getInt("id"), rs.getInt("id_ncc"), rs.getString("name"), rs.getDouble("price"),
+						rs.getString("type"), rs.getInt("amount"));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return null;
 	}
+
 	public static ArrayList<Product> getListProducts() {
 		List<Product> list = new ArrayList<>();
 		try {
@@ -33,13 +34,30 @@ public class ProductDAO {
 			String sql = "select * from product";
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				list.add(new Product(rs.getInt("id"),rs.getInt("id_ncc"), rs.getString("name"), rs.getDouble("price"), rs.getString("type"),
-						 rs.getInt("amount")));
+				list.add(new Product(rs.getInt("id"), rs.getInt("id_ncc"), rs.getString("name"), rs.getDouble("price"),
+						rs.getString("type"), rs.getInt("amount")));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return (ArrayList<Product>) list;
+	}
+
+	public static ArrayList<Product> getListProductsByManufacture(int id_ncc) {
+		List<Product> list = new ArrayList<>();
+		try {
+			Connection con = ConnectionUtil.getConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select * from product where id_ncc = " + id_ncc;
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				list.add(new Product(rs.getInt("id"), rs.getInt("id_ncc"), rs.getString("name"), rs.getDouble("price"),
+						rs.getString("type"), rs.getInt("amount")));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
-	
+		return (ArrayList<Product>) list;
+	}
+
 }

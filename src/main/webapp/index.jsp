@@ -1,3 +1,4 @@
+<%@page import="model.Bean.Manufacture"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="model.Bean.Product"%>
 <%@page import="java.util.ArrayList"%>
@@ -5,7 +6,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%ArrayList<Product> products = (ArrayList<Product>)request.getAttribute("listProducts"); %>
+<%
+ ArrayList<Manufacture> manufactures = (ArrayList<Manufacture>)request.getAttribute("listManufactures"); %>
 <%Account account = (Account)request.getSession().getAttribute("account"); %>
 <html>
 <head>
@@ -13,8 +15,8 @@
 <title>Trang chủ</title>
 <link rel="stylesheet" href="style.css" />
     <script language="javascript">
-        function show() {
-            var x = document.getElementById("myDIV");
+        function show(id) {
+            var x = document.getElementById(id);
             if (x.style.display === "none") {
             x.style.display = "block";
             } else {
@@ -40,21 +42,30 @@
     <div class="body">
         <div class="body-nav">
             <ul>
-                <li><a onclick=show() href="#">Điện thoại</a>
+                <li><a onclick=show('myDIV') href="#">Điện thoại</a>
                 <ul id="myDIV" style="display: none;">
-                    <li><a href="#">Iphone</a></li>
-                    <li><a href="#">Samsung</a></li>
-                    <li><a href="#">Oppo</a></li>
-                    <li><a href="#">Xiaomi</a></li>
-                </ul></li>
-                <li><a href="#">Tablet</a></li>
+                	<li><a href="ProductServlet?type=phone">Tất cả</a></li>
+                	<%for(Manufacture m : manufactures) { %>
+                    <li><a href="ProductServlet?type=phone&id_ncc=<%=m.getId() %>"><%=m.getName() %></a></li>
+                    <%} %>
+                </ul>
+                </li>
+                <li><a onclick=show('myDIV1') href="#">Tablet</a>
+                <ul id="myDIV1" style="display: none;">
+                	<li><a href="ProductServlet?type=tablet">Tất cả</a></li>
+                	<%for(Manufacture m : manufactures) { %>
+                    <li><a href="ProductServlet?type=tablet&id_ncc=<%=m.getId() %>"><%=m.getName() %></a></li>
+                    <%} %>
+                </ul>
+                </li>
                 <li><a href="#">Content 1</a></li>
                 <li><a href="#">content 2</a></li>
             </ul>
         </div>
         <div class="body-content">
             <ul class="list-products">
-            <% for(Product pd : products)
+            <% ArrayList<Product> products = (ArrayList<Product>)request.getAttribute("listProducts"); 
+            for(Product pd : products)
             	{ %>
                 <li>
                     <div class="product">

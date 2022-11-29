@@ -26,7 +26,7 @@ public class CheckLoginServlet extends HttpServlet {
 		Account a = AccountBO.getAccount(id, pass);
 		if (a != null) {
 			request.getSession().setAttribute("account", a);
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("ProductServlet");
 		} else {
 			response.sendRedirect("login.jsp");
 		}
