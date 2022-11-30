@@ -62,7 +62,7 @@
                     <%} %>
                 </ul>
                 </li>
-              	<li><a href="#">Content 1</a></li>
+              	<li><a href="ProductManageServlet">Quản lý sản phẩm</a></li>
                 <li><a href="#">content 2</a></li>
             </ul>
         </div>
