@@ -12,9 +12,9 @@
 <%ArrayList<Product> products = (ArrayList<Product>)request.getAttribute("listProducts"); %>
 <table>
 <%for(Product product : products) {%>
-	<tr><td><%=product.getName() %></td><td><a href="UpdateProductServlet?id=<%=product.getId() %>">Update</a></td></tr>
+	<tr><td><%=product.getName() %></td><td><a href="ProductManageServlet?mode=updateform&id=<%=product.getId() %>">Update</a></td></tr>
 <%} %>
-	<tr><td><a href="AddProductServlet">Add</a></td></tr>
+	<tr><td><a href="ProductManageServlet?mode=addform">Add</a></td></tr>
 </table>
 </body>
 </html>

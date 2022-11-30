@@ -11,7 +11,7 @@
 </head>
 <body>
 <%ArrayList<Manufacture> listManufactures = (ArrayList<Manufacture>)request.getAttribute("listManufactures"); %>
-<form action="AddProductServlet?add=1" method="post">
+<form action="ProductManageServlet?mode=add" method="post">
 	Name: <input type="text" name="name" value="">
 	NCC: <select name="id_ncc">
 			<%for(Manufacture manufacture : listManufactures) {%>
