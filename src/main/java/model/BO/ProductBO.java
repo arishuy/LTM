@@ -37,4 +37,7 @@ public class ProductBO {
 		}
 		return list;
 	}
+	public static void updateProduct(int id, String name, Double price, int amount) {
+		ProductDAO.updateProduct(id, name, price, amount);
+	}
 }

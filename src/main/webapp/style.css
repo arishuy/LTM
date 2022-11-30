@@ -60,6 +60,7 @@ a {
 
 .header {
 	background-color: gray;
+  height: 7vh;
   display: flex;
   position: fixed;
   z-index: 999;
@@ -71,7 +72,7 @@ a {
   padding: 1em;
   background-color: #f4f4f4;
   display: flex;
-  min-height: 90vh;
+  min-height: 93vh;
 }
 .body-nav {
   width: 20%;

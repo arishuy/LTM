@@ -14,6 +14,54 @@
 <meta charset="UTF-8">
 <title>Trang chủ</title>
 <link rel="stylesheet" href="style.css" />
+    <style>
+      .list-products {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+      }
+      .product-inform {
+        display: flex;
+        position: relative;
+        width: 100%;
+        padding: 10px;
+        background-color: #fff;
+      }
+      .product-img {
+        width: 15%;
+        text-align: center;
+        padding-top: 10px;
+      }
+      .product-inform img {
+        width: 100px;
+        height: 100px;
+        margin-right: 10px;
+      }
+      .product-info {
+        width: 50%;
+        padding: 0;
+      }
+      .product-btn {
+        width: 15%;
+        position: absolute;
+        top: 20%;
+        right: 0;
+      }
+    .product-btn button {
+            width: 50%;
+            height: 30px;
+            border: none;
+            border-radius: 5px;
+            background-color: gray;
+            color: #000;
+            cursor: pointer;
+            margin: 5px 5px;
+        }
+        .product-btn button:hover {
+            background-color: #000;
+            color: #fff;
+        }
+    </style>
     <script language="javascript">
         function show(id) {
             var x = document.getElementById(id);
@@ -46,25 +94,10 @@
     <div class="body">
         <div class="body-nav">
             <ul>
-                <li><a onclick=show('myDIV') href="#">Điện thoại</a>
-                <ul id="myDIV" style="display: none;">
-                	<li><a href="ProductServlet?type=phone">Tất cả</a></li>
-                	<%for(Manufacture m : manufactures) { %>
-                    <li><a href="ProductServlet?type=phone&id_ncc=<%=m.getId() %>"><%=m.getName() %></a></li>
-                    <%} %>
-                </ul>
-                </li>
-                <li><a onclick=show('myDIV1') href="#">Tablet</a>
-                <ul id="myDIV1" style="display: none;">
-                	<li><a href="ProductServlet?type=tablet">Tất cả</a></li>
-                	<%for(Manufacture m : manufactures) { %>
-                    <li><a href="ProductServlet?type=tablet&id_ncc=<%=m.getId() %>"><%=m.getName() %></a></li>
-                    <%} %>
-                </ul>
-                </li>
                 <%if (account!=null) {
                 	if (account.getRole().equals("admin")) {%>
-              	<li><a href="ManagerServlet">Quản lý</a></li>
+              	<li><a href="#">Quản lý thiết bị</a></li>
+                <li><a href="#">Quản lý nhà cung cấp</a></li>
                 <%} 
                 else {}} %>
             </ul>
@@ -75,20 +108,23 @@
             for(Product pd : products)
             	{ %>
                 <li>
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="https://cdn.tgdd.vn/Products/Images/42/258047/TimerThumb/samsung-galaxy-z-flip4.jpg" alt="">
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-name"><%=pd.getName() %></h3>
-                            <div class="product-price">Giá: <%=NumberFormat.getCurrencyInstance().format(pd.getPrice())
-                            %></div>
-                            <div class="product-btn">
-                                <a href="#">Mua hàng</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+            <div class="product-inform">
+              <div class="product-img">
+                <img
+                  src="https://cdn.tgdd.vn/Products/Images/42/258047/TimerThumb/samsung-galaxy-z-flip4.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="product-info">
+                <h3 class="product-name"><%=pd.getName() %></h3>
+                <div class="product-price">Giá: <%=NumberFormat.getCurrencyInstance().format(pd.getPrice())%></div>
+              </div>
+              <div class="product-btn">
+                <a  href="ManagerServlet?action=update&id=<%=pd.getId() %>"><button class="edit">Sửa</button></a>
+                <button class="delete" value="">Xóa</button>
+              </div>
+            </div>
+          </li>
                 <%} %>
                 </ul>
         </div>

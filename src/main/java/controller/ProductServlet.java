@@ -32,21 +32,23 @@ public class ProductServlet extends HttpServlet {
 		String type = request.getParameter("type");
 		String id_ncc = request.getParameter("id_ncc");
 		ArrayList<Product> listProducts = null;
-		if (type != null && id_ncc != null) {
-			listProducts = ProductBO.getListProductsByTypeAndManufacture(type, Integer.parseInt(id_ncc));
-		} else if (type != null) {
-			listProducts = ProductBO.getListProductsByType(type);
-		} else if (id_ncc != null) {
-			listProducts = ProductBO.getListProductsByManufacture(Integer.parseInt(id_ncc));
-		} else {
-			listProducts = ProductBO.getListProducts();
-		}
-		ArrayList<Manufacture> listManufactures = ManufactureBO.getListManufactures();
-		request.setAttribute("listProducts", listProducts);
-		request.setAttribute("listManufactures", listManufactures);
-		String destination = "/index.jsp";
-		RequestDispatcher rq = getServletContext().getRequestDispatcher(destination);
-		rq.forward(request, response);
+			if (type != null && id_ncc != null) {
+				listProducts = ProductBO.getListProductsByTypeAndManufacture(type, Integer.parseInt(id_ncc));
+			} else if (type != null) {
+				listProducts = ProductBO.getListProductsByType(type);
+			} else if (id_ncc != null) {
+				listProducts = ProductBO.getListProductsByManufacture(Integer.parseInt(id_ncc));
+			} else {
+				listProducts = ProductBO.getListProducts();
+			}
+			ArrayList<Manufacture> listManufactures = ManufactureBO.getListManufactures();
+			request.setAttribute("listProducts", listProducts);
+			request.setAttribute("listManufactures", listManufactures);
+			String destination = "/index.jsp";
+			RequestDispatcher rq = getServletContext().getRequestDispatcher(destination);
+			rq.forward(request, response);
+		
+		
 //		Product product = ProductBO.getProduct(0)
 	}
 

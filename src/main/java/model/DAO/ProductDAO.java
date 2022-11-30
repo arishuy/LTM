@@ -1,6 +1,7 @@
 package model.DAO;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -58,6 +59,22 @@ public class ProductDAO {
 			// TODO: handle exception
 		}
 		return (ArrayList<Product>) list;
+	}
+	public static void updateProduct(int id, String name, Double price, int amount)
+	{
+		try {
+			Connection con = ConnectionUtil.getConnection();
+			String sql = "update product set name = ?, price = ?, amount = ? where id = ?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setDouble(2, price);
+			pstmt.setInt(3, amount);
+			pstmt.setInt(4, id);
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 }
