@@ -60,21 +60,46 @@ public class ProductDAO {
 		}
 		return (ArrayList<Product>) list;
 	}
-	public static void updateProduct(int id, String name, Double price, int amount)
-	{
+	public static int add(Product product) {
+		int rs = 0;
 		try {
 			Connection con = ConnectionUtil.getConnection();
-			String sql = "update product set name = ?, price = ?, amount = ? where id = ?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, name);
-			pstmt.setDouble(2, price);
-			pstmt.setInt(3, amount);
-			pstmt.setInt(4, id);
-			pstmt.executeUpdate();
-
+			Statement stmt = con.createStatement();
+			String sql = "insert into product (id_ncc,amount,name,type,price)" + " values ('" + product.getId_ncc()
+					+ "','" + product.getAmount() + "','" + product.getName() + "','" + product.getType() + "',"
+					+ product.getPrice() + ")";
+			rs = stmt.executeUpdate(sql);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
+		return rs;
 	}
 
+	public static int update(Product product) {
+		int rs = 0;
+		try {
+			Connection con = ConnectionUtil.getConnection();
+			Statement stmt = con.createStatement();
+			String sql = "update product set id_ncc = '" + product.getId_ncc() + "',amount = '" + product.getAmount()
+					+ "',name = '" + product.getName() + "',type = '" + product.getType() + "',price = "
+					+ product.getPrice() + " where id = " + product.getId();
+			rs = stmt.executeUpdate(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+
+	public static int delete(int id) {
+		int rs = 0;
+		try {
+			Connection con = ConnectionUtil.getConnection();
+			Statement stmt = con.createStatement();
+			String sql = "delete from product where id = " + id;
+			rs = stmt.executeUpdate(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
 }

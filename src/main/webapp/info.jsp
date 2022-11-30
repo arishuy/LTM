@@ -53,7 +53,7 @@
         <ul class="main-nav">
           <li><a href="ProductServlet">Trang chủ</a></li>
           <%if (account!=null) {%>
-        <li><a href="info.jsp"><%=account.getName() %></a></li>
+        <li><a href="AccountServlet"><%=account.getName() %></a></li>
         <%} else {%>
         <li><a href="login.jsp">Đăng nhập</a></li>
         <%} %>

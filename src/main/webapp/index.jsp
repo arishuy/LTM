@@ -31,7 +31,7 @@
       <ul class="main-nav">
         <li><a href="ProductServlet">Trang chủ</a></li>
         <%if (account!=null) {%>
-        <li><a href="info.jsp"><%=account.getName() %></a></li>
+        <li><a href="AccountServlet"><%=account.getName() %></a></li>
         <%} else {%>
         <li><a href="login.jsp">Đăng nhập</a></li>
         <%} %>
@@ -39,7 +39,7 @@
         <%if (account!=null) {%>
         <li><a href="LogoutServlet">Đăng xuất</a></li>
         <%} else {%>
-        <li><a href="#">Liên hệ</a></li>
+        <li><a href="TestServlet">Liên hệ</a></li>
         <%} %>
       </ul>
     </header>
@@ -62,10 +62,13 @@
                     <%} %>
                 </ul>
                 </li>
+<<<<<<< HEAD
                 <%if (account!=null) {
                 	if (account.getRole().equals("admin")) {%>
               	<li><a href="ManagerServlet">Quản lý</a></li>
-                <%} 
+
+              	<li><a href="ProductManageServlet">Quản lý sản phẩm</a></li>
+              	                <%} 
                 else {}} %>
             </ul>
         </div>

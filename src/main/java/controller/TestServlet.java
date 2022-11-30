@@ -8,17 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.BO.AccountBO;
+
 /**
- * Servlet implementation class AccountServlet
+ * Servlet implementation class TestServlet
  */
-@WebServlet("/AccountServlet")
-public class AccountServlet extends HttpServlet {
+@WebServlet("/TestServlet")
+public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AccountServlet() {
+	public TestServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -30,8 +32,7 @@ public class AccountServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.sendRedirect("info.jsp");
-
+		AccountBO.delete(4);
 	}
 
 	/**

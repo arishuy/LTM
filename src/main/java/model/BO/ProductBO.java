@@ -37,7 +37,16 @@ public class ProductBO {
 		}
 		return list;
 	}
-	public static void updateProduct(int id, String name, Double price, int amount) {
-		ProductDAO.updateProduct(id, name, price, amount);
+
+	public static int add(Product product) {
+		return ProductDAO.add(product);
+	}
+
+	public static int update(Product product) {
+		return ProductDAO.update(product);
+	}
+
+	public static int delete(int id) {
+		return ProductDAO.delete(id);
 	}
 }
