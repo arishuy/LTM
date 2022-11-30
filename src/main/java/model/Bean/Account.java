@@ -13,6 +13,14 @@ public class Account {
 		this.email = email;
 		this.phone = phone;
 	}
+	public Account( String username, String password, String role, String name, String email, String phone) {
+		this.username = username;
+		this.password = password;
+		this.role = role;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+	}
 
 	public int getId() {
 		return id;
