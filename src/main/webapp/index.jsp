@@ -62,11 +62,8 @@
                     <%} %>
                 </ul>
                 </li>
-<<<<<<< HEAD
                 <%if (account!=null) {
                 	if (account.getRole().equals("admin")) {%>
-              	<li><a href="ManagerServlet">Quản lý</a></li>
-
               	<li><a href="ProductManageServlet">Quản lý sản phẩm</a></li>
               	                <%} 
                 else {}} %>

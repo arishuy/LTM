@@ -15,10 +15,45 @@
 <title>Trang chủ</title>
 <link rel="stylesheet" href="style.css" />
     <style>
+    	.delete-product {
+            position: absolute;
+   			top: 40%;
+    		left: 40%;
+    		background-color: #8eda89;
+    		padding: 10px;
+    		border-radius: 10px;
+        }
+        .delete-product form {
+            width: 300px;
+            height: fit-content;
+            position: absolute;
+            top: -100px;
+            left: -150px;
+            background-color: gray;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .delete-product p {
+            font-size: 20px;
+        }
+        .delete-product button {
+        	float: right;
+            width: 50px;
+            height: 30px;
+            border-radius: 5px;
+            background-color: #c8c8c8;
+            color: #000;
+            cursor: pointer;
+            margin: 5px 5px;
+            border: none;
+        }
+        .delete-product button:hover {
+            background-color: #000;
+            color: #fff;
+        }
       .list-products {
         display: flex;
         flex-direction: column;
-        flex-wrap: wrap;
       }
       .product-inform {
         display: flex;
@@ -64,7 +99,16 @@
     </style>
     <script language="javascript">
         function show(id) {
-            var x = document.getElementById(id);
+            var x = document.getElementById("dl");
+            x.action = "ProductManageServlet?mode=delete&id=" + id;
+            if (x.style.display === "none") {
+            x.style.display = "block";
+            } else {
+            x.style.display = "none";
+            }
+        }
+        function hide() {
+            var x = document.getElementById("dl");
             if (x.style.display === "none") {
             x.style.display = "block";
             } else {
@@ -96,8 +140,9 @@
             <ul>
                 <%if (account!=null) {
                 	if (account.getRole().equals("admin")) {%>
-              	<li><a href="#">Quản lý thiết bị</a></li>
+              	<li><a href="#">Quản lý sản phẩm</a></li>
                 <li><a href="#">Quản lý nhà cung cấp</a></li>
+                <li><a href="ProductManageServlet?mode=addform">Thêm sản phẩm</a></li>
                 <%} 
                 else {}} %>
             </ul>
@@ -118,16 +163,24 @@
               <div class="product-info">
                 <h3 class="product-name"><%=pd.getName() %></h3>
                 <div class="product-price">Giá: <%=NumberFormat.getCurrencyInstance().format(pd.getPrice())%></div>
+                <a href="ProductManageServlet?mode=view&id=<%=pd.getId() %>">Xem thông tin</a>
               </div>
               <div class="product-btn">
-                <a  href="ManagerServlet?action=update&id=<%=pd.getId() %>"><button class="edit">Sửa</button></a>
-                <button class="delete" value="">Xóa</button>
+                <a  href="ProductManageServlet?mode=updateform&id=<%=pd.getId() %>"><button class="edit">Sửa</button></a>
+                <button onclick=show("<%=pd.getId() %>") class="delete" value="">Xóa</button>
               </div>
             </div>
           </li>
                 <%} %>
                 </ul>
         </div>
+    </div>
+    <div>
+        <form action="" method="post" class="delete-product" style="display: none;" id="dl">
+            <p>Bạn có muốn xóa sản phẩm này?</p>
+            <button type="submit" name="yes">Yes</button>
+            <button type="button" onclick="hide()" name="no">No</button>
+        </form>
     </div>
     <footer class="footer">
       <p>Nhom LTM</p>

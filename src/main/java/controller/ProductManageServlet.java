@@ -41,7 +41,7 @@ public class ProductManageServlet extends HttpServlet {
 		if (mode == null) {
 			ArrayList<Product> listProducts = ProductBO.getListProducts();
 			request.setAttribute("listProducts", listProducts);
-			String destination = "/productManagement.jsp";
+			String destination = "/manager.jsp";
 			RequestDispatcher rq = getServletContext().getRequestDispatcher(destination);
 			rq.forward(request, response);
 			
@@ -58,7 +58,7 @@ public class ProductManageServlet extends HttpServlet {
 		} else if (mode.equals("addform")) {
 			ArrayList<Manufacture> listManufactures = ManufactureBO.getListManufactures();
 			request.setAttribute("listManufactures", listManufactures);
-			String destination = "/addProduct.jsp";
+			String destination = "/pd_add.jsp";
 			RequestDispatcher rq = getServletContext().getRequestDispatcher(destination);
 			rq.forward(request, response);
 			
@@ -67,7 +67,7 @@ public class ProductManageServlet extends HttpServlet {
 			Product product = ProductBO.getProduct(Integer.parseInt(request.getParameter("id")));
 			request.setAttribute("listManufactures", listManufactures);
 			request.setAttribute("product", product);
-			String destination = "/updateProduct.jsp";
+			String destination = "/pd_update.jsp";
 			RequestDispatcher rq = getServletContext().getRequestDispatcher(destination);
 			rq.forward(request, response);
 			
@@ -86,7 +86,7 @@ public class ProductManageServlet extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("id"));
 			Product product = ProductBO.getProduct(id);
 			request.setAttribute("product", product);
-			String destination = "/viewProduct.jsp";
+			String destination = "/pd_view.jsp";
 			RequestDispatcher rq = getServletContext().getRequestDispatcher(destination);
 			rq.forward(request, response);
 			
@@ -100,7 +100,6 @@ public class ProductManageServlet extends HttpServlet {
 			
 		} else if (mode.equals("delete")) {
 			int id = Integer.parseInt(request.getParameter("id"));
-			
 			ProductBO.delete(id);
 			response.sendRedirect("ProductManageServlet");
 
