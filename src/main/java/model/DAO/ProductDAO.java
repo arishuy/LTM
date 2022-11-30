@@ -66,7 +66,7 @@ public class ProductDAO {
 			Connection con = ConnectionUtil.getConnection();
 			Statement stmt = con.createStatement();
 			String sql = "insert into product (id_ncc,amount,name,type,price)" + " values ('" + product.getId_ncc()
-					+ "','" + product.getAmount() + "','" + product.getName() + "','" + product.getType() + "','"
+					+ "','" + product.getAmount() + "','" + product.getName() + "','" + product.getType() + "',"
 					+ product.getPrice() + ")";
 			rs = stmt.executeUpdate(sql);
 		} catch (Exception e) {
@@ -81,7 +81,7 @@ public class ProductDAO {
 			Connection con = ConnectionUtil.getConnection();
 			Statement stmt = con.createStatement();
 			String sql = "update product set id_ncc = '" + product.getId_ncc() + "',amount = '" + product.getAmount()
-					+ "',name = '" + product.getName() + "',type = '" + product.getType() + "',price = '"
+					+ "',name = '" + product.getName() + "',type = '" + product.getType() + "',price = "
 					+ product.getPrice() + " where id = " + product.getId();
 			rs = stmt.executeUpdate(sql);
 		} catch (Exception e) {

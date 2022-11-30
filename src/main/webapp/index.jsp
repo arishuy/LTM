@@ -39,7 +39,7 @@
         <%if (account!=null) {%>
         <li><a href="LogoutServlet">Đăng xuất</a></li>
         <%} else {%>
-        <li><a href="#">Liên hệ</a></li>
+        <li><a href="TestServlet">Liên hệ</a></li>
         <%} %>
       </ul>
     </header>

@@ -43,7 +43,7 @@ public class ManufactureDAO {
 		try {
 			Connection con = ConnectionUtil.getConnection();
 			Statement stmt = con.createStatement();
-			String sql = "update manufacture set name = '" + manufacture.getName() + " where id = "
+			String sql = "update manufacture set name = '" + manufacture.getName() + "' where id = "
 					+ manufacture.getId();
 			rs = stmt.executeUpdate(sql);
 		} catch (Exception e) {

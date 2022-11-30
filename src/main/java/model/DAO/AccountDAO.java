@@ -31,7 +31,7 @@ public class AccountDAO {
 			Statement stmt = con.createStatement();
 			String sql = "insert into user (username,password,role,name,email,phone)" + " values ('"
 					+ account.getUsername() + "','" + account.getPassword() + "','" + account.getRole() + "','"
-					+ account.getName() + "','" + account.getEmail() + "'," + account.getPhone() + ")";
+					+ account.getName() + "','" + account.getEmail() + "','" + account.getPhone() + "')";
 			rs = stmt.executeUpdate(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -46,7 +46,7 @@ public class AccountDAO {
 			Statement stmt = con.createStatement();
 			String sql = "update user set username = '" + account.getUsername() + "',password = '"
 					+ account.getPassword() + "',role = '" + account.getRole() + "',name = '" + account.getName()
-					+ "',email = '" + account.getEmail() + "',phone = " + account.getPhone() + " where id = "
+					+ "',email = '" + account.getEmail() + "',phone = '" + account.getPhone() + "' where id = "
 					+ account.getId();
 			rs = stmt.executeUpdate(sql);
 		} catch (Exception e) {
