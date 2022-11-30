@@ -8,14 +8,58 @@
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="css/layout.css" />
 <title>Insert title here</title>
+<style>
+	button {
+	 padding: 15px 25px;
+	 border: unset;
+	 border-radius: 15px;
+	 color: #4CAF50;
+	 z-index: 1;
+	 background: #e8e8e8;
+	 position: relative;
+     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	 font-weight: 1000;
+	 font-size: 17px;
+	 -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+	 box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+	 transition: all 250ms;
+	 overflow: hidden;
+	}
+	
+	button::before {
+	 content: "";
+	 position: absolute;
+	 top: 0;
+	 left: 0;
+	 height: 100%;
+	 width: 0;
+	 border-radius: 15px;
+	 background-color: #4CAF50;
+	 z-index: -1;
+	 -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+	 box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+	 transition: all 250ms
+	}
+	
+	button:hover {
+	 color: #e8e8e8;
+	 
+	}
+	
+	button:hover::before {
+	 width: 100%;
+	}
+</style>
 </head>
 <body>
 <%ArrayList<Product> products = (ArrayList<Product>)request.getAttribute("listProducts"); %>
 
 <p>
-    <a href="ProductServlet">
-        Back to home page
-    </a>
+	<button>
+	    <a href="ProductServlet">
+	        Back to home page
+	    </a>
+    </button>
 </p>
 
 <table id = "products">
