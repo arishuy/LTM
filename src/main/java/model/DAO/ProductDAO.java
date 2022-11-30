@@ -60,4 +60,46 @@ public class ProductDAO {
 		return (ArrayList<Product>) list;
 	}
 
+	public static int add(Product product) {
+		int rs = 0;
+		try {
+			Connection con = ConnectionUtil.getConnection();
+			Statement stmt = con.createStatement();
+			String sql = "insert into product (id_ncc,amount,name,type,price)" + " values ('" + product.getId_ncc()
+					+ "','" + product.getAmount() + "','" + product.getName() + "','" + product.getType() + "','"
+					+ product.getPrice() + ")";
+			rs = stmt.executeUpdate(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+
+	public static int update(Product product) {
+		int rs = 0;
+		try {
+			Connection con = ConnectionUtil.getConnection();
+			Statement stmt = con.createStatement();
+			String sql = "update product set id_ncc = '" + product.getId_ncc() + "',amount = '" + product.getAmount()
+					+ "',name = '" + product.getName() + "',type = '" + product.getType() + "',price = '"
+					+ product.getPrice() + " where id = " + product.getId();
+			rs = stmt.executeUpdate(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+
+	public static int delete(int id) {
+		int rs = 0;
+		try {
+			Connection con = ConnectionUtil.getConnection();
+			Statement stmt = con.createStatement();
+			String sql = "delete form product where id = " + id;
+			rs = stmt.executeUpdate(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
 }

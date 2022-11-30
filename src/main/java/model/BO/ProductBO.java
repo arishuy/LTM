@@ -37,4 +37,16 @@ public class ProductBO {
 		}
 		return list;
 	}
+
+	public static int add(Product product) {
+		return ProductDAO.add(product);
+	}
+
+	public static int update(Product product) {
+		return ProductDAO.update(product);
+	}
+
+	public static int delete(int id) {
+		return ProductDAO.delete(id);
+	}
 }

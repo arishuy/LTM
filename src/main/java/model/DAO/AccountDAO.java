@@ -24,4 +24,47 @@ public class AccountDAO {
 		return null;
 	}
 
+	public static int add(Account account) {
+		int rs = 0;
+		try {
+			Connection con = ConnectionUtil.getConnection();
+			Statement stmt = con.createStatement();
+			String sql = "insert into user (username,password,role,name,email,phone)" + " values ('"
+					+ account.getUsername() + "','" + account.getPassword() + "','" + account.getRole() + "','"
+					+ account.getName() + "','" + account.getEmail() + "'," + account.getPhone() + ")";
+			rs = stmt.executeUpdate(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+
+	public static int update(Account account) {
+		int rs = 0;
+		try {
+			Connection con = ConnectionUtil.getConnection();
+			Statement stmt = con.createStatement();
+			String sql = "update user set username = '" + account.getUsername() + "',password = '"
+					+ account.getPassword() + "',role = '" + account.getRole() + "',name = '" + account.getName()
+					+ "',email = '" + account.getEmail() + "',phone = " + account.getPhone() + " where id = "
+					+ account.getId();
+			rs = stmt.executeUpdate(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+
+	public static int delete(int id) {
+		int rs = 0;
+		try {
+			Connection con = ConnectionUtil.getConnection();
+			Statement stmt = con.createStatement();
+			String sql = "delete form user where id = " + id;
+			rs = stmt.executeUpdate(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
 }
