@@ -15,12 +15,9 @@ Product product = (Product)request.getAttribute("product"); %>
 <form action="ProductManageServlet?mode=update&id=<%=product.getId() %>" method="post">
 	Name: <input type="text" name="name" value="<%=product.getName()%>">
 	NCC: <select name="id_ncc">
-			<%for(Manufacture manufacture : listManufactures) {
-				if(manufacture.getId()==product.getId_ncc()){%>
-				<option value=<%=manufacture.getId() %> selected><%=manufacture.getName() %></option>
-			<%}	else %>
-				<option value=<%=manufacture.getId() %>><%=manufacture.getName() %></option>
-			<%} %>
+			<%for(Manufacture manufacture : listManufactures) {%>
+				<option value=<%=manufacture.getId() %> <%if(manufacture.getId()==product.getId_ncc()){ %>selected<%} %>><%=manufacture.getName() %></option>
+			<% } %>
 		</select> 
 	Type: <select name="type">
 			<option value="phone" <%if(product.getType().equals("phone")){ %>selected<%} %>>Phone</option>
