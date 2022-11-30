@@ -1,12 +1,17 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.BO.AccountBO;
+import model.Bean.Account;
 
 /**
  * Servlet implementation class AccountServlet
@@ -30,8 +35,23 @@ public class AccountServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.sendRedirect("info.jsp");
-
+		String mode = request.getParameter("mode");
+		if (mode == null) {
+			ArrayList<Account> listAccounts = AccountBO.getListAccounts();
+			request.setAttribute("listAccounts", listAccounts);
+			String destination = "/managerAccount.jsp";
+			RequestDispatcher rq = getServletContext().getRequestDispatcher(destination);
+			rq.forward(request, response);
+		}
+		else if (mode.equals("1"))
+		{
+			response.sendRedirect("info.jsp");
+		}
+		else if (mode.equals("delete")) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			AccountBO.delete(id);
+			response.sendRedirect("AccountServlet");
+		}
 	}
 
 	/**

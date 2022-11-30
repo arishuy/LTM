@@ -31,7 +31,7 @@
       <ul class="main-nav">
         <li><a href="ProductServlet">Trang chủ</a></li>
         <%if (account!=null) {%>
-        <li><a href="AccountServlet"><%=account.getName() %></a></li>
+        <li><a href="AccountServlet?mode=1"><%=account.getName() %></a></li>
         <%} else {%>
         <li><a href="login.jsp">Đăng nhập</a></li>
         <%} %>
@@ -65,6 +65,7 @@
                 <%if (account!=null) {
                 	if (account.getRole().equals("admin")) {%>
               	<li><a href="ProductManageServlet">Quản lý sản phẩm</a></li>
+              	<li><a href="AccountServlet">Quản lý người dùng</a></li>
               	                <%} 
                 else {}} %>
             </ul>
@@ -80,7 +81,7 @@
                             <img src="https://cdn.tgdd.vn/Products/Images/42/258047/TimerThumb/samsung-galaxy-z-flip4.jpg" alt="">
                         </div>
                         <div class="product-info">
-                            <h3 class="product-name"><%=pd.getName() %></h3>
+                            <h3 class="product-name"><p><%=pd.getName() %><p></h3>
                             <div class="product-price">Giá: <%=NumberFormat.getCurrencyInstance().format(pd.getPrice())
                             %></div>
                             <div class="product-btn">

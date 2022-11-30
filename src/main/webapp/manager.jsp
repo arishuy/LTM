@@ -16,10 +16,11 @@
 <link rel="stylesheet" href="style.css" />
     <style>
     	.delete-product {
+    		border-style: groove;
             position: absolute;
    			top: 40%;
     		left: 40%;
-    		background-color: #8eda89;
+    		background-color: gray;
     		padding: 10px;
     		border-radius: 10px;
         }
