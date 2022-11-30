@@ -95,7 +95,7 @@ public class ProductDAO {
 		try {
 			Connection con = ConnectionUtil.getConnection();
 			Statement stmt = con.createStatement();
-			String sql = "delete form product where id = " + id;
+			String sql = "delete from product where id = " + id;
 			rs = stmt.executeUpdate(sql);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -60,7 +60,7 @@ public class AccountDAO {
 		try {
 			Connection con = ConnectionUtil.getConnection();
 			Statement stmt = con.createStatement();
-			String sql = "delete form user where id = " + id;
+			String sql = "delete from user where id = " + id;
 			rs = stmt.executeUpdate(sql);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -57,7 +57,7 @@ public class ManufactureDAO {
 		try {
 			Connection con = ConnectionUtil.getConnection();
 			Statement stmt = con.createStatement();
-			String sql = "delete form manufacture where id = " + id;
+			String sql = "delete from manufacture where id = " + id;
 			rs = stmt.executeUpdate(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
