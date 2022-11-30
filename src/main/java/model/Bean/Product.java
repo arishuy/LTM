@@ -2,6 +2,21 @@ package model.Bean;
 
 public class Product {
 	private int id, id_ncc, amount;
+
+	private String name, type;
+	private Double price;
+	
+	public Product() {}
+	
+	public Product(int id, int id_ncc, String name, Double price, String type, int amount) {
+		this.id = id;
+		this.id_ncc = id_ncc;
+		this.amount = amount;
+		this.name = name;
+		this.type = type;
+		this.price = price;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -38,15 +53,4 @@ public class Product {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-	private String name, type;
-	private Double price;
-	public Product(int id, int id_ncc, String name, Double price, String type, int amount) {
-		this.id = id;
-		this.id_ncc = id_ncc;
-		this.amount = amount;
-		this.name = name;
-		this.type = type;
-		this.price = price;
-	}
-	
 }
