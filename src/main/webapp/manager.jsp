@@ -6,9 +6,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%
- ArrayList<Manufacture> manufactures = (ArrayList<Manufacture>)request.getAttribute("listManufactures"); %>
-<%Account account = (Account)request.getSession().getAttribute("account"); %>
+<%Account account = (Account)request.getSession().getAttribute("account");
+if(account==null) response.sendRedirect("ProductServlet");%>
+<% ArrayList<Manufacture> manufactures = (ArrayList<Manufacture>)request.getAttribute("listManufactures"); %>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -157,7 +158,11 @@
             <div class="product-inform">
               <div class="product-img">
                 <img
-                  src="https://cdn.tgdd.vn/Products/Images/42/258047/TimerThumb/samsung-galaxy-z-flip4.jpg"
+                  	src = <%if(!pd.getUrl().equals("")) {%>
+                            	"<%=pd.getUrl() %>"
+                            <%}else{ %>
+                            	"https://cdn.tgdd.vn/Products/Images/42/258047/TimerThumb/samsung-galaxy-z-flip4.jpg" 
+                            <%} %>
                   alt=""
                 />
               </div>

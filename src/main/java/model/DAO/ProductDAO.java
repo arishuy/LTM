@@ -18,7 +18,7 @@ public class ProductDAO {
 
 			if (rs.next()) {
 				return new Product(rs.getInt("id"), rs.getInt("id_ncc"), rs.getString("name"), rs.getDouble("price"),
-						rs.getString("type"), rs.getInt("amount"));
+						rs.getString("type"), rs.getInt("amount"), rs.getString("url"));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -35,7 +35,7 @@ public class ProductDAO {
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				list.add(new Product(rs.getInt("id"), rs.getInt("id_ncc"), rs.getString("name"), rs.getDouble("price"),
-						rs.getString("type"), rs.getInt("amount")));
+						rs.getString("type"), rs.getInt("amount"), rs.getString("url")));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -52,21 +52,22 @@ public class ProductDAO {
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				list.add(new Product(rs.getInt("id"), rs.getInt("id_ncc"), rs.getString("name"), rs.getDouble("price"),
-						rs.getString("type"), rs.getInt("amount")));
+						rs.getString("type"), rs.getInt("amount"), rs.getString("url")));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return (ArrayList<Product>) list;
 	}
+
 	public static int add(Product product) {
 		int rs = 0;
 		try {
 			Connection con = ConnectionUtil.getConnection();
 			Statement stmt = con.createStatement();
-			String sql = "insert into product (id_ncc,amount,name,type,price)" + " values ('" + product.getId_ncc()
+			String sql = "insert into product (id_ncc,amount,name,type,price,url)" + " values ('" + product.getId_ncc()
 					+ "','" + product.getAmount() + "','" + product.getName() + "','" + product.getType() + "',"
-					+ product.getPrice() + ")";
+					+ product.getPrice() + ",'" + product.getUrl() + "')";
 			rs = stmt.executeUpdate(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -81,7 +82,7 @@ public class ProductDAO {
 			Statement stmt = con.createStatement();
 			String sql = "update product set id_ncc = '" + product.getId_ncc() + "',amount = '" + product.getAmount()
 					+ "',name = '" + product.getName() + "',type = '" + product.getType() + "',price = "
-					+ product.getPrice() + " where id = " + product.getId();
+					+ product.getPrice() + ",url = '" + product.getUrl() + "' where id = " + product.getId();
 			rs = stmt.executeUpdate(sql);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -143,6 +143,14 @@
                             <input type="text" name="amount" value="" />
                         </td>
                     </tr>
+                                        <tr>
+                        <td>
+                            URL:
+                        </td>
+                        <td>
+                            <input type="text" name="url" value="" />
+                        </td>
+                    </tr>
                 </table>
                   	<input class="btn" type="submit" value="Add"/>
 					<input class="btn-1" type="reset" value="Reset"/>

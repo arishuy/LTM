@@ -78,7 +78,13 @@
                 <li>
                     <div class="product">
                         <div class="product-img">
-                            <img src="https://cdn.tgdd.vn/Products/Images/42/258047/TimerThumb/samsung-galaxy-z-flip4.jpg" alt="">
+                            <img src=
+                            <%if(!pd.getUrl().equals("")) {%>
+                            	"<%=pd.getUrl() %>"
+                            <%}else{ %>
+                            	"https://cdn.tgdd.vn/Products/Images/42/258047/TimerThumb/samsung-galaxy-z-flip4.jpg" 
+                            <%} %>
+                            alt="">
                         </div>
                         <div class="product-info">
                             <h3 class="product-name"><p><%=pd.getName() %><p></h3>
