@@ -17,7 +17,7 @@
     <style>
     	.delete-product {
     		border-style: groove;
-            position: absolute;
+            position: fixed;
    			top: 40%;
     		left: 40%;
     		background-color: gray;
