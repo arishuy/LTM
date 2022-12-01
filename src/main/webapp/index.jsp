@@ -15,14 +15,28 @@
 <title>Trang chủ</title>
 <link rel="stylesheet" href="style.css" />
 <style type="text/css">
+.body {
+padding:0;
+}
 .body-content {
-overflow-x: hidden;
-overflow-y: scroll;
+	overflow: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 max-height: 93vh;
 }
-.body {
-
-padding:0;}
+.body-content::-webkit-scrollbar {
+    width: 0.5rem;
+    
+}
+.body-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+.body-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.58);
+}
+.body-content::-webkit-scrollbar-thumb:hover {
+    background: black;
+}
 </style>
     <script language="javascript">
         function show(id) {

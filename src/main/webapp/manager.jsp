@@ -16,6 +16,28 @@ if(account==null) response.sendRedirect("ProductServlet");%>
 <title>Quản lý sản phẩm</title>
 <link rel="stylesheet" href="style.css" />
     <style>
+    .body-content {
+	overflow: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+max-height: 93vh;
+}
+.body-content::-webkit-scrollbar {
+    width: 0.5rem;
+    
+}
+.body-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+.body-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.58);
+}
+.body-content::-webkit-scrollbar-thumb:hover {
+    background: black;
+}
+	.body {
+	padding:0;
+	}
     	.delete-product {
     		border-style: groove;
             position: fixed;
@@ -188,8 +210,5 @@ if(account==null) response.sendRedirect("ProductServlet");%>
             <button type="button" onclick="hide()" name="no">No</button>
         </form>
     </div>
-    <footer class="footer">
-      <p>Nhom LTM</p>
-      </footer>
   </body>
 </html>
