@@ -5,7 +5,8 @@
     <%@page import="model.Bean.Manufacture"%>
 <%@page import="java.util.ArrayList"%>
     <%@page import="model.Bean.Account"%>
-    <%Account account = (Account)request.getSession().getAttribute("account"); %>
+    <%Account account = (Account)request.getSession().getAttribute("account");
+    	if(account==null) response.sendRedirect("ProductServlet"); %>
     <%ArrayList<Manufacture> listManufactures = (ArrayList<Manufacture>)request.getAttribute("listManufactures");
 Product product = (Product)request.getAttribute("product"); %>
 <!DOCTYPE html>
@@ -40,19 +41,28 @@ Product product = (Product)request.getAttribute("product"); %>
         .table-data {
             margin: 50px 0 0 100px;
         }
-        .table-data .btn {
+        .table-data .btn,.btn1 {
             height: 30px;
             border: 1px solid #ccc;
             border-radius: 5px;
             margin-top: 20px;
             padding: 0 20px 0 20px;
             position: absolute;
-            left: 50%;
         }
-        .table-data .btn:hover {
+        .btn {
+        left: 40%;
+        }
+        .btn1 {
+        left: 50%;
+        }
+        .table-data .btn:hover, .btn1:hover {
             border: 1px solid #000;
             background-color: black;
             color: white;
+        }
+        
+        .1 {
+        	left: 40% !important;
         }
     </style>
 <body>
@@ -118,7 +128,8 @@ Product product = (Product)request.getAttribute("product"); %>
                             Giá: 
                         </td>
                         <td>
-                            <input type="text" name="price" value="<%=product.getPrice() %>" />
+                        	<%String price = NumberFormat.getCurrencyInstance().format(product.getPrice());%>
+                            <input type="text" name="price" value="<%=price.substring(0, price.length()-1) %>" />
                         </td>
                     </tr>
                     <tr>
@@ -131,6 +142,7 @@ Product product = (Product)request.getAttribute("product"); %>
                     </tr>
                 </table>
                   <input class="btn" type="submit" value="Lưu" />
+                  <input class="btn1" type="reset" value="Reset"/>
                 </form>
             </div>
         </div>

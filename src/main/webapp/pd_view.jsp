@@ -1,9 +1,11 @@
+<%@page import="model.Bean.Manufacture"%>
 <%@page import="model.Bean.Product"%>
 <%@page import="java.text.NumberFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@page import="model.Bean.Account"%>
-    <%Account account = (Account)request.getSession().getAttribute("account"); %>
+    <%Account account = (Account)request.getSession().getAttribute("account");
+    if(account==null) response.sendRedirect("ProductServlet");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,7 +69,8 @@
         	<%} %>
         </ul>
       </header>
-<%Product product = (Product)request.getAttribute("product"); %>
+<%Product product = (Product)request.getAttribute("product"); 
+Manufacture manufacture = (Manufacture)request.getAttribute("manufacture"); %>
 <p>
     
 </p>
@@ -80,20 +83,12 @@
             </div>
             <div class="table-data">
                 <table border="0">
-                	<tr>
-                        <td>
-                            ID Sản Phẩm:
-                        </td>
-                        <td>
-                            <%=product.getId() %>
-                        </td>
-                    </tr>
                     <tr>
                         <td>
-                            ID Nhà cung cấp:
+                            Nhà cung cấp:
                         </td>
                         <td>
-                            <%=product.getId_ncc() %>
+                            <%=manufacture.getName() %>
                         </td>
                     </tr>
                     <tr>

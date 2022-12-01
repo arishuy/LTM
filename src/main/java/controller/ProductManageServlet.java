@@ -44,7 +44,7 @@ public class ProductManageServlet extends HttpServlet {
 			String destination = "/manager.jsp";
 			RequestDispatcher rq = getServletContext().getRequestDispatcher(destination);
 			rq.forward(request, response);
-			
+
 		} else if (mode.equals("add")) {
 			String name = request.getParameter("name");
 			int id_ncc = Integer.parseInt(request.getParameter("id_ncc"));
@@ -54,14 +54,14 @@ public class ProductManageServlet extends HttpServlet {
 
 			ProductBO.add(new Product(0, id_ncc, name, price, type, amount));
 			response.sendRedirect("ProductManageServlet");
-			
+
 		} else if (mode.equals("addform")) {
 			ArrayList<Manufacture> listManufactures = ManufactureBO.getListManufactures();
 			request.setAttribute("listManufactures", listManufactures);
 			String destination = "/pd_add.jsp";
 			RequestDispatcher rq = getServletContext().getRequestDispatcher(destination);
 			rq.forward(request, response);
-			
+
 		} else if (mode.equals("updateform")) {
 			ArrayList<Manufacture> listManufactures = ManufactureBO.getListManufactures();
 			Product product = ProductBO.getProduct(Integer.parseInt(request.getParameter("id")));
@@ -70,7 +70,7 @@ public class ProductManageServlet extends HttpServlet {
 			String destination = "/pd_update.jsp";
 			RequestDispatcher rq = getServletContext().getRequestDispatcher(destination);
 			rq.forward(request, response);
-			
+
 		} else if (mode.equals("update")) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			String name = request.getParameter("name");
@@ -81,15 +81,17 @@ public class ProductManageServlet extends HttpServlet {
 
 			ProductBO.update(new Product(id, id_ncc, name, price, type, amount));
 			response.sendRedirect("ProductManageServlet");
-			
+
 		} else if (mode.equals("view")) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			Product product = ProductBO.getProduct(id);
+			Manufacture manufacture = ManufactureBO.getById(product.getId_ncc());
 			request.setAttribute("product", product);
+			request.setAttribute("manufacture", manufacture);
 			String destination = "/pd_view.jsp";
 			RequestDispatcher rq = getServletContext().getRequestDispatcher(destination);
 			rq.forward(request, response);
-			
+
 		} else if (mode.equals("deleteform")) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			Product product = ProductBO.getProduct(id);
@@ -97,7 +99,7 @@ public class ProductManageServlet extends HttpServlet {
 			String destination = "/deleteProduct.jsp";
 			RequestDispatcher rq = getServletContext().getRequestDispatcher(destination);
 			rq.forward(request, response);
-			
+
 		} else if (mode.equals("delete")) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			ProductBO.delete(id);

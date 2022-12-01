@@ -5,7 +5,8 @@
     <%@page import="model.Bean.Manufacture"%>
 <%@page import="java.util.ArrayList"%>
     <%@page import="model.Bean.Account"%>
-    <%Account account = (Account)request.getSession().getAttribute("account"); %>
+    <%Account account = (Account)request.getSession().getAttribute("account");
+    if(account==null) response.sendRedirect("ProductServlet");%>
     <%ArrayList<Manufacture> listManufactures = (ArrayList<Manufacture>)request.getAttribute("listManufactures"); %>
 <!DOCTYPE html>
 <html>

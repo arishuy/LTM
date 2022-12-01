@@ -10,6 +10,15 @@ public class ManufactureBO {
 		return ManufactureDAO.getListManufactures();
 	}
 
+	public static Manufacture getById(int id) {
+		for (Manufacture m : getListManufactures()) {
+			if (m.getId() == id) {
+				return m;
+			}
+		}
+		return null;
+	}
+
 	public static int add(Manufacture manufacture) {
 		return ManufactureDAO.add(manufacture);
 	}
