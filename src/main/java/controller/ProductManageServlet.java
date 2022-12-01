@@ -51,8 +51,9 @@ public class ProductManageServlet extends HttpServlet {
 			String type = request.getParameter("type");
 			Double price = Double.parseDouble(request.getParameter("price"));
 			int amount = Integer.parseInt(request.getParameter("amount"));
+			String url = request.getParameter("url");
 
-			ProductBO.add(new Product(0, id_ncc, name, price, type, amount));
+			ProductBO.add(new Product(0, id_ncc, name, price, type, amount, url));
 			response.sendRedirect("ProductManageServlet");
 
 		} else if (mode.equals("addform")) {
@@ -76,10 +77,12 @@ public class ProductManageServlet extends HttpServlet {
 			String name = request.getParameter("name");
 			int id_ncc = Integer.parseInt(request.getParameter("id_ncc"));
 			String type = request.getParameter("type");
-			Double price = Double.parseDouble(request.getParameter("price"));
-			int amount = Integer.parseInt(request.getParameter("amount"));
+			Double price = Double.parseDouble(request.getParameter("price").replace(".", ""));
 
-			ProductBO.update(new Product(id, id_ncc, name, price, type, amount));
+			int amount = Integer.parseInt(request.getParameter("amount"));
+			String url = request.getParameter("url");
+
+			ProductBO.update(new Product(id, id_ncc, name, price, type, amount, url));
 			response.sendRedirect("ProductManageServlet");
 
 		} else if (mode.equals("view")) {
