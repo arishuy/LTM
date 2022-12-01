@@ -133,7 +133,7 @@
     	<%} else {%>
     	<td>User</td>
     	<%}%>
-    	<td><a href="#"><button>Cập nhật</button></a></td>
+    	<td><a href="AccountServlet?mode=updateForm&id=<%=a.getId()%>"><button>Cập nhật</button></a></td>
     	<td><a><button onclick=show("<%=a.getId() %>")>Xóa</button></a></td>
     </tr>
     <%}%>
