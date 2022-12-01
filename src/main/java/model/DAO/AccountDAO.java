@@ -85,4 +85,22 @@ public class AccountDAO {
 		}
 		return rs;
 	}
+	
+	public static Account getAccountById(int id) {
+		try {
+			Connection con = ConnectionUtil.getConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select * from user where id='" + id + "'";
+			ResultSet rs = stmt.executeQuery(sql);
+
+			if (rs.next()) {
+				return new Account(rs.getInt("id"), rs.getString("username"), rs.getString("password"),
+						rs.getString("role"), rs.getString("name"), rs.getString("email"), rs.getString("phone"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

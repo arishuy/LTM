@@ -124,7 +124,7 @@
     for(Account a : Accounts){ %>
     <tr>
     <td><%=a.getId() %></td>
-    <td><%=a.getUsername() %></td>
+    <td><a href="AccountServlet?mode=view&id=<%=a.getId()%>" ><%=a.getUsername() %></a></td>
     <td><%=a.getName() %></td>
     <td><%=a.getEmail() %></td>
     <td><%=a.getPhone() %></td>
@@ -133,7 +133,7 @@
     	<%} else {%>
     	<td>User</td>
     	<%}%>
-    	<td><a href="#"><button>Cập nhật</button></a></td>
+    	<td><a href="AccountServlet?mode=updateForm&id=<%=a.getId()%>"><button>Cập nhật</button></a></td>
     	<td><a><button onclick=show("<%=a.getId() %>")>Xóa</button></a></td>
     </tr>
     <%}%>

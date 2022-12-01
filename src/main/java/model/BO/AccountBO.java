@@ -25,5 +25,8 @@ public class AccountBO {
 	public static int delete(int id) {
 		return AccountDAO.delete(id);
 	}
+	public static Account getAccountById(int id) {
+		return AccountDAO.getAccountById(id);
+	}
 
 }
