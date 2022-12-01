@@ -73,6 +73,15 @@ public class AccountServlet extends HttpServlet {
 			AccountBO.update(user);
 			
 			response.sendRedirect("AccountServlet");
+		} 
+		else if (mode.equals("view")) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			Account user = AccountBO.getAccountById(id);
+			request.setAttribute("user", user);
+			String destination = "/viewAccount.jsp";
+			RequestDispatcher rq = getServletContext().getRequestDispatcher(destination);
+			rq.forward(request, response);
+
 		}
 	}
 
