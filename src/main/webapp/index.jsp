@@ -14,6 +14,16 @@
 <meta charset="UTF-8">
 <title>Trang chủ</title>
 <link rel="stylesheet" href="style.css" />
+<style type="text/css">
+.body-content {
+overflow-x: hidden;
+overflow-y: scroll;
+max-height: 93vh;
+}
+.body {
+
+padding:0;}
+</style>
     <script language="javascript">
         function show(id) {
             var x = document.getElementById(id);
@@ -91,7 +101,7 @@
                             <div class="product-price">Giá: <%=NumberFormat.getCurrencyInstance().format(pd.getPrice())
                             %></div>
                             <div class="product-btn">
-                                <a href="#">Mua hàng</a>
+                                <a href="https://www.thegioididong.com/">Mua hàng</a>
                             </div>
                         </div>
                     </div>
@@ -100,8 +110,5 @@
                 </ul>
         </div>
     </div>
-    <footer class="footer">
-      <p>Nhom LTM</p>
-      </footer>
   </body>
 </html>

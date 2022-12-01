@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Thông tin sản phẩm</title>
 <link rel="stylesheet" href="style.css" />
 <style>
         .body-content {

@@ -13,7 +13,7 @@ Product product = (Product)request.getAttribute("product"); %>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Cập nhật sản phẩm</title>
 </head>
 <link rel="stylesheet" href="style.css" />
     <style>

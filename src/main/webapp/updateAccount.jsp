@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Cập nhật tài khoản</title>
 </head>
 <link rel="stylesheet" href="style.css" />
     <style>
@@ -138,7 +138,7 @@
                             Password:
                         </td>
                         <td>
-                            <input name="password" type="text" value="<%=user.getPassword() %>" readonly>
+                            <input name="password" type="password" value="<%=user.getPassword() %>" readonly>
                         </td>
                     </tr>
                     <tr>

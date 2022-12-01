@@ -13,7 +13,7 @@ if(account==null) response.sendRedirect("ProductServlet");%>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Trang chủ</title>
+<title>Quản lý sản phẩm</title>
 <link rel="stylesheet" href="style.css" />
     <style>
     	.delete-product {
