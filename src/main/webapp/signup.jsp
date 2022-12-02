@@ -1,3 +1,4 @@
+<%@page import="model.Bean.Account"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -220,6 +221,9 @@
     </style>
 </head>
   <body class="align">
+  <%Account account = (Account)request.getAttribute("account");
+  String error = (String)request.getAttribute("error"); %>
+  	<%=error %>
     <div class="grid">
       <form action="SignupServlet" method="POST" class="form login">
         <div class="form__field">
@@ -234,6 +238,7 @@
             name="username"
             class="form__input"
             placeholder="Tên đăng nhập"
+            value = "<%if(account!=null) {%><%=account.getUsername() %><%} %>"
             required
           />
         </div>
@@ -262,7 +267,7 @@
             <input
               id="login__password"
               type="password"
-              name="password"
+              name="confirm_password"
               class="form__input"
               placeholder="Xác nhận mật khẩu"
               required
@@ -281,6 +286,7 @@
               name="name"
               class="form__input"
               placeholder="Tên của bạn"
+              value = "<%if(account!=null) {%><%=account.getName() %><%} %>"
               required
             />
           </div>
@@ -297,6 +303,7 @@
               name="email"
               class="form__input"
               placeholder="Email"
+              value = "<%if(account!=null) {%><%=account.getEmail() %><%} %>"
               required
             />
           </div>
@@ -313,6 +320,7 @@
               name="phone"
               class="form__input"
               placeholder="Số điện thoại"
+              value = "<%if(account!=null) {%><%=account.getPhone() %><%} %>"
               required
             />
           </div>
