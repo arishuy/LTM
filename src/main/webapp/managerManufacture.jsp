@@ -1,3 +1,4 @@
+<%@page import="model.Bean.Manufacture"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="java.util.ArrayList"%>
@@ -7,10 +8,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Quản lý người dùng</title>
+<title>Quản lý nhà cung cấp</title>
 <link rel="stylesheet" href="style.css" />
     <style>
-    .body {
+    	.body {
     		min-height: 0;
     		background-color: white;
     	}
@@ -63,28 +64,61 @@
             background-color: #4CAF50;
             color: white;
         }
-        .tb-1 button {
-            background-color: #4CAF50;
-            color: white;
+        .tb-1 button{
+            background-color: white;
+            color: black;
             padding: 14px 20px;
             margin: 8px 0;
             border: none;
             cursor: pointer;
             width: 100%;
         }
+        .btn {
+            border-radius: 10px;
+    	margin-left: 20px;
+    	cursor: pointer;
+    	background-color: gray;
+    	border: none;
+    	padding: 12px 20px;
+        }
+        .btn:hover {
+        background-color: black;
+        color: white;
+        }
     </style>
 <script language="javascript">
+function showAdd() {
+    var x = document.getElementById("add");
+    var id = "1";
+    x.action = "ManufactureServlet?mode=add&id=" + id;
+    if (x.style.display === "none") {
+    x.style.display = "block";
+    } else {
+    x.style.display = "none";
+    }
+}
+	function showUpdate(id, name) {
+    var x = document.getElementById("update");
+    x.action = "ManufactureServlet?mode=update&id=" + id;
+    var y = document.getElementById("update-input");
+    y.value = name;
+    if (x.style.display === "none") {
+    x.style.display = "block";
+    } else {
+    x.style.display = "none";
+    	}
+	}
         function show(id) {
             var x = document.getElementById("dl");
-            x.action = "AccountServlet?mode=delete&id=" + id;
+            x.action = "ManufactureServlet?mode=delete&id=" + id;
             if (x.style.display === "none") {
             x.style.display = "block";
             } else {
             x.style.display = "none";
             }
         }
-        function hide() {
-            var x = document.getElementById("dl");
+        function hide(id) {
+            var x = document.getElementById(id);
             if (x.style.display === "none") {
             x.style.display = "block";
             } else {
@@ -115,40 +149,49 @@
     <table class="tb-1" border="1">
     <thead>
 	<td>ID</td>
-	<td>Username</td>
-	<td>Họ và tên</td>
-	<td>Email</td>
-	<td>Số điện thoại</td>
-	<td>Vai trò</td>
+	<td>Tên</td>
 	<td>Cập nhật</td>
 	<td>Xóa</td>
     </thead>
     <tbody>
-    <% ArrayList<Account> Accounts = (ArrayList<Account>)request.getAttribute("listAccounts"); 
-    for(Account a : Accounts){ %>
+    <% ArrayList<Manufacture> nccs = (ArrayList<Manufacture>)request.getAttribute("listManufactures"); 
+    for(Manufacture ncc : nccs){ %>
     <tr>
-    <td><%=a.getId() %></td>
-    <td><a href="AccountServlet?mode=view&id=<%=a.getId()%>" ><%=a.getUsername() %></a></td>
-    <td><%=a.getName() %></td>
-    <td><%=a.getEmail() %></td>
-    <td><%=a.getPhone() %></td>
-    <% if (a.getRole().equals("admin")){ %>
-    	<td>Admin</td>
-    	<%} else {%>
-    	<td>User</td>
-    	<%}%>
-    	<td><a href="AccountServlet?mode=updateForm&id=<%=a.getId()%>"><button>Cập nhật</button></a></td>
-    	<td><a><button onclick=show("<%=a.getId() %>")>Xóa</button></a></td>
+    <td><%=ncc.getId() %></td>
+    <td><%=ncc.getName() %></td>
+    <td><button onclick=showUpdate("<%=ncc.getId() %>","<%=ncc.getName() %>")>Cập nhật</button></td>
+    <td><a><button onclick=show("<%=ncc.getId() %>")>Xóa</button></a></td>
     </tr>
     <%}%>
     </tbody>
     </table>
     </div>
+        <input class="btn" type="button" onclick=showAdd() value="Thêm" />
+    <div>
+        <form action="" method="post" class="delete-user" style="display: none;" id="add">
+            <p>Cập nhật nhà cung cấp</p>
+            <div>
+            Tên: <input id="add-input" name="name" value="" type="text"/>
+            </div>
+            <button type="submit" name="yes">Yes</button>
+            <button type="button" onclick=hide("add") name="no">No</button>
+        </form>
+    </div>
+    <div>
+        <form action="" method="post" class="delete-user" style="display: none;" id="update">
+            <p>Cập nhật nhà cung cấp</p>
+            <div>
+            Tên: <input id="update-input" name="name" value="" type="text"/>
+            </div>
+            <button type="submit" name="yes">Yes</button>
+            <button type="button" onclick=hide("update") name="no">No</button>
+        </form>
+    </div>
     <div>
         <form action="" method="post" class="delete-user" style="display: none;" id="dl">
-            <p>Bạn có muốn xóa tài khoản này?</p>
+            <p>Bạn có muốn xóa nhà cung cấp này?</p>
             <button type="submit" name="yes">Yes</button>
-            <button type="button" onclick="hide()" name="no">No</button>
+            <button type="button" onclick=hide("dl") name="no">No</button>
         </form>
     </div>
 </body>

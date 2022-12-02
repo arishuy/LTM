@@ -164,8 +164,8 @@ max-height: 93vh;
             <ul>
                 <%if (account!=null) {
                 	if (account.getRole().equals("admin")) {%>
-              	<li><a href="#">Quản lý sản phẩm</a></li>
-                <li><a href="#">Quản lý nhà cung cấp</a></li>
+              	<li><a href="ProductManageServlet">Quản lý sản phẩm</a></li>
+                <li><a href="ManufactureServlet">Quản lý nhà cung cấp</a></li>
                 <li><a href="ProductManageServlet?mode=addform">Thêm sản phẩm</a></li>
                 <%} 
                 else {}} %>
