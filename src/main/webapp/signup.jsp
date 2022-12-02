@@ -222,9 +222,12 @@
 </head>
   <body class="align">
   <%Account account = (Account)request.getAttribute("account");
-  String error = (String)request.getAttribute("error"); %>
-  	<%=error %>
-    <div class="grid">
+  String error = (String)request.getAttribute("error");
+  	if (error != null){%>
+  		<%=error %>
+  	<%} %>
+  	
+    <div class="grid">	
       <form action="SignupServlet" method="POST" class="form login">
         <div class="form__field">
           <label for="login__username"
