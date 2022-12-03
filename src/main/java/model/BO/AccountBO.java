@@ -53,5 +53,8 @@ public class AccountBO {
 		Matcher matcher = pattern.matcher(email);
 		return matcher.find();
 	}
+	public static void changePassword(int id, String password) {
+		AccountDAO.changePassword(id, password);
+	}
 
 }

@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/java/controller/AccountServlet.java=UTF-8
 encoding//src/main/java/controller/ProductManageServlet.java=UTF-8
 encoding//src/main/java/controller/SignupServlet.java=UTF-8
 encoding//src/main/webapp/WEB-INF/tags/tag.tag=UTF-8

@@ -141,6 +141,7 @@
                             <input name="password" type="password" value="<%=user.getPassword() %>" readonly>
                         </td>
                     </tr>
+                    <% if (user.getRole().equals("admin")) { %>
                     <tr>
                         <td>
                             Role:
@@ -152,9 +153,13 @@
 							</select>
                         </td>
                     </tr>
+                    <%} %>
                     <tr>
                     	<td>
+                    	<% if (user.getRole().equals("admin")) { %>
                     		<a href="AccountServlet"><button>Trở về</button></a>
+                    		<%} %>
+                    		
                     	</td>
                         <td>
                             <input type="submit" value="Đổi thông tin" />

@@ -102,5 +102,14 @@ public class AccountDAO {
 		}
 		return null;
 	}
-
+	public static void changePassword(int id, String password) {
+		try {
+			Connection con = ConnectionUtil.getConnection();
+			Statement stmt = con.createStatement();
+			String sql = "update user set password = '" + password + "' where id = " + id ;
+			stmt.executeUpdate(sql);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 }

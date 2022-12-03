@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import model.BO.AccountBO;
 import model.Bean.Account;
 
@@ -83,6 +84,39 @@ public class AccountServlet extends HttpServlet {
 			RequestDispatcher rq = getServletContext().getRequestDispatcher(destination);
 			rq.forward(request, response);
 
+		}
+		else if (mode.equals("changepassword")) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			Account user = AccountBO.getAccountById(id);
+			request.setAttribute("user", user);
+			String destination = "/changePassword.jsp";
+			RequestDispatcher rq = getServletContext().getRequestDispatcher(destination);
+			rq.forward(request, response);
+		}
+		else if (mode.equals("change")) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			String password = request.getParameter("password-confirm");
+			String password_new = request.getParameter("password-new");
+			Account user = AccountBO.getAccountById(id);
+			if (password_new.equals(user.getPassword())) {
+				request.setAttribute("error-info", "Password mới phải khác password cũ!");
+				request.setAttribute("user", user);
+				String destination = "/changePassword.jsp";
+				RequestDispatcher rq = getServletContext().getRequestDispatcher(destination);
+				rq.forward(request, response);
+			}
+			if (password.equals(password_new))
+			{
+			AccountBO.changePassword(id, password);
+			response.sendRedirect("AccountServlet?mode=1");
+			}
+			else {
+				request.setAttribute("error-info", "Password xác nhận không trùng khớp!");
+				request.setAttribute("user", user);
+				String destination = "/changePassword.jsp";
+				RequestDispatcher rq = getServletContext().getRequestDispatcher(destination);
+				rq.forward(request, response);
+			}
 		}
 	}
 
