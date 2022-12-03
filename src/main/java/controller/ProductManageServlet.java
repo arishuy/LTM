@@ -52,8 +52,20 @@ public class ProductManageServlet extends HttpServlet {
 			Double price = Double.parseDouble(request.getParameter("price"));
 			int amount = Integer.parseInt(request.getParameter("amount"));
 			String url = request.getParameter("url");
+			Product product = new Product(0, id_ncc, name, price, type, amount, url);
 
-			ProductBO.add(new Product(0, id_ncc, name, price, type, amount, url));
+			if (ProductBO.isExistName(name, 0)) {
+				ArrayList<Manufacture> listManufactures = ManufactureBO.getListManufactures();
+				request.setAttribute("listManufactures", listManufactures);
+				request.setAttribute("product", product);
+				request.setAttribute("error", "Tên sản phẩm đã tồn tại");
+				String destination = "/pd_add.jsp";
+				RequestDispatcher rq = getServletContext().getRequestDispatcher(destination);
+				rq.forward(request, response);
+				return;
+			}
+
+			ProductBO.add(product);
 			response.sendRedirect("ProductManageServlet");
 
 		} else if (mode.equals("addform")) {
@@ -81,8 +93,21 @@ public class ProductManageServlet extends HttpServlet {
 
 			int amount = Integer.parseInt(request.getParameter("amount"));
 			String url = request.getParameter("url");
+			Product product_update = new Product(id, id_ncc, name, price, type, amount, url);
 
-			ProductBO.update(new Product(id, id_ncc, name, price, type, amount, url));
+			if (ProductBO.isExistName(name, id)) {
+				ArrayList<Manufacture> listManufactures = ManufactureBO.getListManufactures();
+				Product product = ProductBO.getProduct(Integer.parseInt(request.getParameter("id")));
+				request.setAttribute("listManufactures", listManufactures);
+				request.setAttribute("product", product);
+				request.setAttribute("error", "Tên sản phẩm đã tồn tại");
+				String destination = "/pd_update.jsp";
+				RequestDispatcher rq = getServletContext().getRequestDispatcher(destination);
+				rq.forward(request, response);
+				return;
+			}
+
+			ProductBO.update(product_update);
 			response.sendRedirect("ProductManageServlet");
 
 		} else if (mode.equals("view")) {

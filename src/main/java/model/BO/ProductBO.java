@@ -49,4 +49,13 @@ public class ProductBO {
 	public static int delete(int id) {
 		return ProductDAO.delete(id);
 	}
+
+	public static boolean isExistName(String name, int id) {
+		for (Product product : getListProducts()) {
+			if (product.getName().trim().equals(name.trim()) && product.getId() != id) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

@@ -8,7 +8,8 @@
     <%Account account = (Account)request.getSession().getAttribute("account");
     	if(account==null) response.sendRedirect("ProductServlet"); %>
     <%ArrayList<Manufacture> listManufactures = (ArrayList<Manufacture>)request.getAttribute("listManufactures");
-Product product = (Product)request.getAttribute("product"); %>
+Product product = (Product)request.getAttribute("product");
+String error = (String)request.getAttribute("error"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -140,7 +141,7 @@ Product product = (Product)request.getAttribute("product"); %>
                             Số lượng:
                         </td>
                         <td>
-                            <input type="text" name="amount" value="<%=product.getAmount() %>" />
+                            <input type="number" name="amount" value="<%=product.getAmount() %>" />
                         </td>
                     </tr>
                     <tr>
@@ -151,6 +152,9 @@ Product product = (Product)request.getAttribute("product"); %>
                             <input type="text" name="url" value="<%=product.getUrl() %>" />
                         </td>
                     </tr>
+                    <%if(error!=null){ %>
+                    <tr><td><%=error %></td></tr>
+                    <%} %>
                 </table>
                   <input class="btn" type="submit" value="Lưu" />
                   <input class="btn1" type="reset" value="Reset"/>

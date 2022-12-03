@@ -70,6 +70,8 @@
         }
     </style>
 <body>
+<%Product product = (Product)request.getAttribute("product");
+	String error = (String)request.getAttribute("error");%>
  <header class="header">
         <h1 class="logo"><a href="#">ITPhone</a></h1>
         <ul class="main-nav">
@@ -102,7 +104,7 @@
                             Tên sản phẩm:
                         </td>
                         <td>
-                            <input type="text" name="name" value="" />
+                            <input type="text" name="name" value="<%if(product!=null) {%><%=product.getName() %><%} %>" />
                         </td>
                     </tr>
                     <tr>
@@ -111,7 +113,7 @@
                     </td>
                     <td> <select name="id_ncc">
 			<%for(Manufacture manufacture : listManufactures) {%>
-			<option value=<%=manufacture.getId() %>><%=manufacture.getName() %></option>
+			<option value=<%=manufacture.getId() %> <%if(product!=null) {if(product.getId_ncc()==manufacture.getId()){%>selected<%}} %>><%=manufacture.getName() %></option>
 			<%} %>
 		</select> 
 			</td>
@@ -122,8 +124,8 @@
                     </td>
                     <td>
                     <select name="type">
-			<option value="phone">Phone</option>
-			<option value="tablet">Tablet</option>
+			<option value="phone" <%if(product!=null) {if(product.getType().equals("phone")){%>selected<%}} %>>Phone</option>
+			<option value="tablet" <%if(product!=null) {if(product.getType().equals("tablet")){%>selected<%}} %>>Tablet</option>
 		</select>
                     </td>
                     </tr>
@@ -132,7 +134,10 @@
                             Giá: 
                         </td>
                         <td>
-                            <input type="text" name="price" value="" />
+                            <input type="text" name="price" value="<%if(product!=null) {
+                            String price = NumberFormat.getCurrencyInstance().format(product.getPrice());
+                            %><%=price.substring(0, price.length()-2) %>
+                            <%} %>" />
                         </td>
                     </tr>
                     <tr>
@@ -140,7 +145,7 @@
                             Số lượng:
                         </td>
                         <td>
-                            <input type="text" name="amount" value="" />
+                            <input type="number" name="amount" value="<%if(product!=null) {%><%=product.getAmount() %><%} %>" />
                         </td>
                     </tr>
                                         <tr>
@@ -148,9 +153,12 @@
                             URL:
                         </td>
                         <td>
-                            <input type="text" name="url" value="" />
+                            <input type="text" name="url" value="<%if(product!=null) {%><%=product.getUrl() %><%} %>" />
                         </td>
                     </tr>
+                    <%if(error!=null) {%>
+                    <tr><td><%=error %></td></tr>
+                    <%} %>
                 </table>
                   	<input class="btn" type="submit" value="Add"/>
 					<input class="btn-1" type="reset" value="Reset"/>
